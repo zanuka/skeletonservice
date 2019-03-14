@@ -15,6 +15,7 @@ config.toml
 # User-specific stuff
 *.idea
 gcloud-service-account.json
+gcloud-prod-key.json.enc
 
 *.iml
 

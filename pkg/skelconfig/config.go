@@ -35,7 +35,7 @@ var kmsClient *kms.KeyManagementClient
 // to make the auth service run
 func init() {
 
-	viper.SetEnvPrefix("authsvc")
+	viper.SetEnvPrefix("skelsvc")
 	viper.AutomaticEnv()
 
 	bucket := viper.Get("CONFIG_BUCKET")
@@ -44,7 +44,7 @@ func init() {
 	var decodedConf []byte
 	var err error
 	if bucket == nil || configLocation == nil {
-		log.Println("Env vars AUTHSVC_CONFIG_BUCKET and/or AUTHSVC_CONFIG_LOCATION not found")
+		log.Println("Env vars SKELSVC_CONFIG_BUCKET and/or SKELSVC_CONFIG_LOCATION not found")
 		decodedConf = loadConfigFromLocal()
 	} else {
 		decodedConf, err = loadConfigFromStorage(bucket.(string), configLocation.(string))

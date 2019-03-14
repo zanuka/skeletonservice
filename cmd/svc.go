@@ -35,7 +35,7 @@ import (
 
 func main() {
 
-	fs := flag.NewFlagSet("authsvc", flag.ExitOnError)
+	fs := flag.NewFlagSet("svc", flag.ExitOnError)
 	var (
 		debugAddr = fs.String("debug.addr", ":9100", "Debug and metrics listen address")
 		//consulAddr = fs.String("consul.addr", "", "Consul Address")
