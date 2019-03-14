@@ -12,15 +12,19 @@ Please feel free to use and remix.
 - easy config pattern
 - HealthCheck implementation example
 - Login implementation example
+- travis, test and deploy support
+- deploy scripts
+- App Engine app.yaml with evn vars on deploy
 
-## Running with Google AppEngine 
+## Running with Google AppEngine - Flexible env
 
 ### Perquisites
  - gcloud cli installed
  - service account - json file
  - kms key ring
 
-Running the app in its current form you will need a google service-account an encrypted config.yml file. 
+### Local Dev
+Running the app in its current form a google service-account an encrypted config.yml file. 
 
 You will need to set the evn var - this will be used to decrypt the config.yml at runtime and expose it to the app
 `GOOGLE_APPLICATION_CREDENTIALS=gcloud-service-account.json`
