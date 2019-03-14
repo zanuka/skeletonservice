@@ -26,16 +26,16 @@ type JWTPayload struct {
 	UserId string `json:"userId,omitempty"`
 }
 
-// AuthService implementation of the Service interface.
-type AuthService struct{}
+// SkelService implementation of the Service interface.
+type SkelService struct{}
 
 // Health implementation of the Service
-func (AuthService) Health() bool {
+func (SkelService) Health() bool {
 	return true
 }
 
 // Login implementation of the Service.
-func (AuthService) Login(username string, password string) (string, error) {
+func (SkelService) Login(username string, password string) (string, error) {
 
 	// Query the db to get the user
 	sqlStatement := `select person.id, person.hashed_password from person where email = '%v'`

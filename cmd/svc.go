@@ -56,7 +56,7 @@ func main() {
 
 	var service skelsvc.Service
 	{
-		service = skelsvc.AuthService{}
+		service = skelsvc.SkelService{}
 		service = skelsvc.LoggingMiddleware(logger)(service)
 	}
 
