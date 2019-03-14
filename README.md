@@ -1,7 +1,7 @@
 # Go kit skeleton Micro Service
 This [GoKit Microservice](https://gokit.io/) skeleton designed to be copied and used as a starting point Google AppEngine based MicroServices. However it is setup to be easily be adapted to run anywhere by modifying only skelconfig/config.go 
 
-Architecture was taken and adapted from Anton Klimenko's Medium Article Microservices in Go: https://medium.com/seek-blog/microservices-in-go-2fc1570f6800
+Architecture was taken and adapted from [Anton Klimenko's](https://github.com/antklim) Medium Article Microservices in Go: https://medium.com/seek-blog/microservices-in-go-2fc1570f6800
 
 Please feel free to use and remix.
 
