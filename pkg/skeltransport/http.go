@@ -69,7 +69,7 @@ func encodeError(_ context.Context, err error, w http.ResponseWriter) {
 	w.WriteHeader(err2code(err))
 
 	// cast it to an app error
-	appErr := err.(*skelerror.AuthServiceError)
+	appErr := err.(*skelerror.ServiceError)
 	wrappedErr := errorWrapper{Error: appErr.Error(), Key: appErr.Key()}
 
 	json.NewEncoder(w).Encode(wrappedErr)
@@ -77,7 +77,7 @@ func encodeError(_ context.Context, err error, w http.ResponseWriter) {
 
 func err2code(err error) int {
 
-	appErr := err.(*skelerror.AuthServiceError)
+	appErr := err.(*skelerror.ServiceError)
 
 	switch appErr {
 
