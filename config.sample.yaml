@@ -1,0 +1,7 @@
+
+DB_HOST: '35.201.31.32'
+DB_USER: 'postgres'
+DB_PASSWORD: 'f8rovk1snPaOInBr'
+DB_NAME: 'logmate_development_v2'
+DB_PORT: 5432
+
