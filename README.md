@@ -6,7 +6,7 @@ Architecture was taken and adapted from Anton Klimenko's Medium Article Microser
 Please feel free to use and remix.
 
 ## Skeleton implementation details
-- http transport layer - REST
+- http transport layer
 - grpc transport layer
 - separation of concerns
 - easy config pattern
