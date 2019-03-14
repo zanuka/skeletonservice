@@ -8,7 +8,7 @@ Please feel free to use and remix.
 ## Skeleton implementation details
 - http transport layer - REST
 - grpc transport layer
-- serration of concerns
+- separation of concerns
 - easy config pattern
 - HealthCheck implementation example
 - Login implementation example

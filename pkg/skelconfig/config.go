@@ -36,10 +36,6 @@ var kmsClient *kms.KeyManagementClient
 func init() {
 
 	viper.SetEnvPrefix("authsvc")
-	//
-	//os.Setenv("AUTHSVC_CONFIG_BUCKET", "authservice-env")
-	//os.Setenv("AUTHSVC_CONFIG_LOCATION", "prod/config.yaml.enc")
-
 	viper.AutomaticEnv()
 
 	bucket := viper.Get("CONFIG_BUCKET")
@@ -141,7 +137,6 @@ func loadConfigFromStorage(bucket string, configPath string) ([]byte, error) {
 	decodedConf, err1 := decryptConfig(slurp)
 	if err1 != nil {
 		log.Fatal(err1)
-		//return nil, err
 	}
 
 	return decodedConf, nil
@@ -213,7 +208,7 @@ export GOOGLE_APPLICATION_CREDENTIALS=/path/to/your-project-credentials.json
 	}
 
 	req := &kmspb.DecryptRequest{
-		Name:       "projects/logmate-api/locations/global/keyRings/logmate-keyring/cryptoKeys/logmate-key",
+		Name:       "projects/[project-id]/locations/global/keyRings/[keyring]/cryptoKeys/[key]",
 		Ciphertext: cipher,
 	}
 
