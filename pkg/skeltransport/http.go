@@ -43,14 +43,6 @@ func NewHTTPHandler(endpoints svcendpoint.Endpoints, logger log.Logger) http.Han
 		options...,
 	))
 
-	//m.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-	//
-	//	w.Write([]byte("FOO:" + authconfig.AppConfig.DBName))
-	//
-	//	//logger.Log("ov", os.Getenv("FOO"))
-	//
-	//})
-
 	return m
 }
 
@@ -61,11 +53,6 @@ func DecodeHTTPHealthRequest(_ context.Context, _ *http.Request) (interface{}, e
 
 // DecodeHTTPGreetingRequest method.
 func DecodeHTTPLoginRequest(_ context.Context, r *http.Request) (interface{}, error) {
-
-	// Check we have a body
-	//if r.GetBody == nil {
-	//	return nil, &autherror.NoBody
-	//}
 
 	// try to decode the body
 	var req svcendpoint.LoginRequest
@@ -93,10 +80,13 @@ func err2code(err error) int {
 	appErr := err.(*skelerror.AuthServiceError)
 
 	switch appErr {
+
 	case &skelerror.JSONDecodeError, &skelerror.NoBody:
 		return http.StatusBadRequest
+
 	case &skelerror.InvalidCredentials:
 		return http.StatusUnauthorized
+
 	default:
 		return http.StatusInternalServerError
 	}
