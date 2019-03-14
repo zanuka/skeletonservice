@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/go-chi/jwtauth"
+	"github.com/red010b37/sketetonservice/pkg/skelconfig"
+	"github.com/red010b37/sketetonservice/pkg/skelerror"
 	"golang.org/x/crypto/bcrypt"
 	"time"
 )
@@ -36,31 +38,29 @@ func (AuthService) Health() bool {
 func (AuthService) Login(username string, password string) (string, error) {
 
 	// Query the db to get the user
-	sqlStatement := `select person.id, person.hashed_password from person
-		LEFT JOIN person_email on person_email.person_id = person.id
-		WHERE person_email.email = '%v'`
+	sqlStatement := `select person.id, person.hashed_password from person where email = '%v'`
 
 	sqlStatement = fmt.Sprintf(sqlStatement, username)
 
-	rows, err := authconfig.DBconn.Query(sqlStatement)
+	rows, err := skelconfig.DBconn.Query(sqlStatement)
 	defer rows.Close()
 	if err != nil {
-		return "", &autherror.QueryFailure
+		return "", &skelerror.QueryFailure
 	}
 
 	userColVal := processRows(rows)
 
 	// did we find a user with that username/email
 	if userColVal.FindValueForCol("id").ToString() == "" {
-		return "", &autherror.InvalidCredentials
+		return "", &skelerror.InvalidCredentials
 	}
 
 	// check the password against the hash one we have
 	hashUserPassword := userColVal.FindValueForCol("hashed_password").ToString()
-	hashPass := password + authconfig.AppConfig.HashPepper
+	hashPass := password + skelconfig.AppConfig.HashPepper
 
 	if !checkPasswordHash(hashPass, hashUserPassword) {
-		return "", &autherror.InvalidCredentials
+		return "", &skelerror.InvalidCredentials
 	}
 
 	// everything checked out make the token
